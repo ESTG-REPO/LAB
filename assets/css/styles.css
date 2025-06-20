@@ -28,15 +28,3 @@ html, body {
       width: 100vw;
       object-fit: cover;
     }
-    
-    .overlay {
-      position: absolute;
-      bottom: 1rem;
-      left: 1rem;
-      padding: 0.4rem 0.8rem;
-      background: rgba(0, 0, 0, 0.6);
-      border-radius: 6px;
-      font-size: 1rem;
-      color: #fff;
-      font-family: sans-serif;
-    }
