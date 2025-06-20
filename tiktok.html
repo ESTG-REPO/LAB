@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TikTok Style Feed with Shaka Player</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.0/shaka-player.compiled.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      overflow: hidden;
+      height: 100%;
+    }
+
+     .feed-container {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    }
+    
+    .video-slide {
+      height: 100vh;
+      scroll-snap-align: start;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.5s ease;
+    }
+    
+    video {
+      height: 100vh;
+      width: 100vw;
+      object-fit: cover;
+    }
+    
+    .overlay {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      padding: 0.4rem 0.8rem;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 6px;
+      font-size: 1rem;
+      color: #fff;
+      font-family: sans-serif;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="feed-container" id="feed">
+    <!-- Slides will be inserted here dynamically -->
+  </div>
+
+  
+
+</body>
+</html>
