@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>TikTok Style Feed with Shaka Player</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.0/shaka-player.compiled.min.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    html, body {
+html, body {
       margin: 0;
       padding: 0;
       background: #000;
@@ -48,16 +40,3 @@
       color: #fff;
       font-family: sans-serif;
     }
-
-  </style>
-</head>
-<body>
-
-  <div class="feed-container" id="feed">
-    <!-- Slides will be inserted here dynamically -->
-  </div>
-
-  
-
-</body>
-</html>
