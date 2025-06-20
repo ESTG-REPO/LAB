@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shaka Player - Mobile First Responsive</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.8.0/shaka-player.compiled.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    #player-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      width: 100vw;
+      background-color: black;
+    }
+
+    #video {
+      width: 100%;
+      height: 100%;
+      max-height: 100%;
+      max-width: 100%;
+      object-fit: contain; /* keep full video visible, no crop */
+      background-color: black;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="player-container">
+    <video id="video"
+           autoplay
+           muted
+           loop
+           playsinline
+           controls>
+    </video>
+  </div>
+
+  <script>
+    async function initPlayer() {
+      if (!shaka.Player.isBrowserSupported()) {
+        console.error('Shaka Player not supported on this browser.');
+        return;
+      }
+
+      const video = document.getElementById('video');
+      const player = new shaka.Player(video);
+
+      player.addEventListener('error', e => {
+        console.error('Shaka error:', e.detail);
+      });
+
+      try {
+        await player.load('C:\Users\Cardoso\Downloads\Life Untouched 4K Demo.mp4');
+        console.log('Video loaded and playing.');
+      } catch (err) {
+        console.error('Load error:', err);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', initPlayer);
+  </script>
+
+</body>
+</html>
