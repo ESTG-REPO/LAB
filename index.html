@@ -80,6 +80,34 @@
 </script>
 
 <script>
+  function injectOverlayStyle() {
+    const style = document.createElement('style');
+    style.textContent = `
+      .overlay {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 1rem 2rem;
+        background: rgba(0, 0, 0, 0.75);
+        border-radius: 16px;
+        font-size: 2rem;
+        font-weight: bold;
+        color: #fff;
+        text-shadow: 0 0 8px #000;
+        backdrop-filter: blur(6px);
+        z-index: 10;
+        pointer-events: none;
+        max-width: 90%;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
   function injectFilenameOverlay() {
     const slides = document.querySelectorAll('.video-slide');
 
@@ -87,24 +115,20 @@
       const video = slide.querySelector('video');
       if (!video) return;
 
-      // Try to get source URL from Shaka or fallback to <video>.src
-      let url = video.src || video.currentSrc;
+      const url = video.src || video.currentSrc || '';
       const filename = url.split('/').pop().split('.').slice(0, -1).join('.');
 
-      // Create overlay
-      const overlay = document.createElement('div');
-      overlay.className = 'overlay';
-      overlay.textContent = filename;
-
-      // Avoid duplicates
       if (!slide.querySelector('.overlay')) {
+        const overlay = document.createElement('div');
+        overlay.className = 'overlay';
+        overlay.textContent = filename;
         slide.appendChild(overlay);
       }
     });
   }
 
-  // Wait until DOM + video load
   document.addEventListener('DOMContentLoaded', () => {
+    injectOverlayStyle();
     setTimeout(injectFilenameOverlay, 1000);
   });
 </script>
