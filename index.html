@@ -78,5 +78,37 @@
   const slides = document.querySelectorAll('.video-slide');
   slides.forEach(slide => observer.observe(slide));
 </script>
+
+<script>
+  function injectFilenameOverlay() {
+    const slides = document.querySelectorAll('.video-slide');
+
+    slides.forEach(slide => {
+      const video = slide.querySelector('video');
+      if (!video) return;
+
+      // Try to get source URL from Shaka or fallback to <video>.src
+      let url = video.src || video.currentSrc;
+      const filename = url.split('/').pop().split('.').slice(0, -1).join('.');
+
+      // Create overlay
+      const overlay = document.createElement('div');
+      overlay.className = 'overlay';
+      overlay.textContent = filename;
+
+      // Avoid duplicates
+      if (!slide.querySelector('.overlay')) {
+        slide.appendChild(overlay);
+      }
+    });
+  }
+
+  // Wait until DOM + video load
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(injectFilenameOverlay, 1000);
+  });
+</script>
+
+  
 </body>
 </html>
